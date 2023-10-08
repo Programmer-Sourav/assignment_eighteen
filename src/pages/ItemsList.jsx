@@ -18,8 +18,11 @@ console.log("SubCat", foodSubCategory)
 const mapOverItemsList = itemsList.map((eachItem)=>(eachItem))
 console.log("123", mapOverItemsList)
 
-const mapOverItems = itemsList.map((eachItem)=>(eachItem.subCatInfo.foodInfo.productDetails.product.productName)) //undefined
+const mapOverItems =  itemsList.map((fc)=>(fc.subCatInfo.foodInfo.productDetails.product.productName))
 console.log("222", mapOverItems)
+
+
+
 
 const name = mapOverItems.map((item)=>(item))
 console.log("224")
@@ -54,7 +57,16 @@ useEffect(()=>{dispatch(getItems())}, [])
                                 
                               
                             ), []).map((foodSCType, index)=>(
+                                <ul>
                                 <h4>{foodSCType}</h4>
+                                <li key={index}>
+                                 {
+                                    itemsList.filter((currentItem)=>(currentItem.subCatInfo.foodInfo.foodSCType===foodSCType)) .map((currentItem)=>(
+                                        <li>{currentItem.subCatInfo.foodInfo.productDetails.product.productName}</li>))
+                                   
+                                 }
+                                </li>
+                                </ul>
                             ))
                         
 
