@@ -1,11 +1,15 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteItemAction, getItems } from "../actionCreators/actions"
+import { useNavigate } from "react-router"
 
 export default function ItemsList(){
 const dispatch = useDispatch()
 const itemsList =  useSelector((state)=>state.items)
 console.log("Items ", itemsList)
+
+
+const navigate = useNavigate()
 
 
 const foodCategory = itemsList.reduce((acc, currentItem)=>(!acc.includes(currentItem.foodCategory) ? [...acc, currentItem.foodCategory] : acc),[])
@@ -32,8 +36,11 @@ useEffect(()=>{dispatch(getItems())}, [])
 
 
 const deleteItem = (itemId) =>{
-  console.log("Item", itemId)
   dispatch(deleteItemAction(itemId))
+}
+
+const editItem = (itemId) =>{
+    navigate(`/edititem/${itemId}`)
 }
 
 
@@ -60,7 +67,7 @@ const deleteItem = (itemId) =>{
                                 <li key={index}>
                                  {
                                     itemsList.filter((currentItem)=>(currentItem.subCatInfo.foodInfo.foodSCType===foodSCType)) .map((currentItem)=>(
-                                        <li>{currentItem.subCatInfo.foodInfo.productDetails.product.productName} <button onClick={()=>{deleteItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Delete</button></li>))
+                                        <li>{currentItem.subCatInfo.foodInfo.productDetails.product.productName} <button onClick={()=>{deleteItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Delete</button>  <button onClick={()=>{editItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Edit</button></li>))
                                    
                                  }
                                 </li>

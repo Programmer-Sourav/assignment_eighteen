@@ -85,4 +85,13 @@ export const deleteItemAction = (itemId) => async(dispatch) =>{
       console.error("Error", error)
      }
 }
+
+export const editItem = (itemId) => async (dispatch) =>{
+  try{
+
+  }
+  catch(error){
+    console.error("Error ", error)
+  }
+}
  

@@ -8,7 +8,9 @@ export const initialState = {
 
 
 const InventoryReducer = (state = initialState, action) =>{
+
     switch(action.type){
+
     case "FETCH_ITEMS_SUCCESS":
     return {...state, items: action.payload}
 
@@ -25,6 +27,7 @@ const InventoryReducer = (state = initialState, action) =>{
 
     default:
     return state;
+    
     }
 }
 
