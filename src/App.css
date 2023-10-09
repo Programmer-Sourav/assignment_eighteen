@@ -24,6 +24,21 @@
   color: white;
 }
 
+.formfield{
+  height: 40px;
+  width: 256px;
+  margin: 16px;
+
+}
+
+.submitbtn{
+  height: 30px;
+  width: 128px;
+  background-color: orange;
+  color: white;
+  margin: 16px;
+}
+
 .App-link {
   color: #61dafb;
 }
