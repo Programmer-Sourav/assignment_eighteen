@@ -25,6 +25,14 @@ export const deleteAndFilterItem  = (itemId) =>(
   })
 
 
+  export const fetchSalesList = (itemList) =>(
+{
+ type: "FETCH_SALES_LIST_SUCCESS", 
+ payload:  itemList
+}
+  )
+
+
 export const getItems = () => async (dispatch) =>{
   try{
     const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/items")
@@ -93,5 +101,56 @@ export const editItem = (itemId) => async (dispatch) =>{
   catch(error){
     console.error("Error ", error)
   }
+}
+
+export const updateSalesValues = (valueToBeUpdated)  =>({
+   type: "SALES_ENTRY", 
+   payload: valueToBeUpdated
+})
+
+export const addToSales = (valueToAdd) => async (dispatch) => {
+  console.log("Sales Data ", valueToAdd)
+  try{
+    const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/sales", {
+    method: "POST",
+    headers : {
+      "Content-Type": "application/json", 
+    },
+    body: JSON.stringify(valueToAdd)
+   })
+  }
+   catch(error ){
+    console.error("Error", error)
+   }
+}
+
+export const getSales = () => async (dispatch) =>{
+  try{
+    const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/sales")
+    const receivedResponse = await response.json()
+    const itemsList = receivedResponse.sales
+    console.log("Response", receivedResponse, itemsList)
+    dispatch(fetchSalesList(itemsList))
+  }
+  catch(error){
+    console.error("Error", error)
+  }
+}
+
+
+export const updateQuantity = (productId, quantity) => async (dispatch) => {
+  console.log("Update Data ", quantity)
+  try{
+    const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/items/update", {
+    method: "POST",
+    headers : {
+      "Content-Type": "application/json", 
+    },
+    body: JSON.stringify({productId, quantity})
+   })
+  }
+   catch(error ){
+    console.error("Error", error)
+   }
 }
  

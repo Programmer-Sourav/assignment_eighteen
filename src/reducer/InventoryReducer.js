@@ -4,6 +4,13 @@ export const initialState = {
     formData: {
         brand: "", productName: "", productExpiry: "", price: 0, category: "", subCategory: "", quantity: 0
     }
+,
+
+    salesData: {
+        brand: "", productName: "",  price: 0, category: "", subCategory: "", quantity: 0
+    }, 
+
+    salesList: []
 }
 
 
@@ -24,6 +31,13 @@ const InventoryReducer = (state = initialState, action) =>{
     
     case "SET_EMPTY": 
     return {...state, formData: initialState.formData}
+
+    case "SALES_ENTRY": 
+    return {...state, salesData: action.payload}
+
+    case "FETCH_SALES_LIST_SUCCESS": 
+    console.log(444, action.payload )
+    return {...state, salesList: action.payload }
 
     default:
     return state;
