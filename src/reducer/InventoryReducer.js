@@ -2,7 +2,7 @@ export const initialState = {
     items: [], 
 
     formData: {
-        brand: "", productName: "", productExpiry: "", price: "", category: "", subCategory: ""
+        brand: "", productName: "", productExpiry: "", price: 0, category: "", subCategory: "", quantity: 0
     }
 }
 
@@ -27,7 +27,7 @@ const InventoryReducer = (state = initialState, action) =>{
 
     default:
     return state;
-    
+
     }
 }
 

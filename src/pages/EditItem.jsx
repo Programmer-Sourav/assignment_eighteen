@@ -59,7 +59,7 @@ export default function EditItem(){
      <div>
      <label>
       Quantity
-      <input type="text" name="category" value={formData.quantity||qty} className="formfield" onChange={(e)=>{onValueChange(e)}}/>
+      <input type="text" name="quantity" value={formData.quantity||qty} className="formfield" onChange={(e)=>{onValueChange(e)}}/>
      </label>
      </div>
      <input type="submit" value="Submit" className="submitbtn" />
