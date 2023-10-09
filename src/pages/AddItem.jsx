@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { initialState } from "../reducer/InventoryReducer"
 import { useDispatch, useSelector } from "react-redux"
-import { sendEmpty, sendFormData } from "../actionCreators/actions"
+import { saveFormData, sendEmpty, sendFormData } from "../actionCreators/actions"
 
 export default function AddItem(){
 
@@ -12,6 +12,7 @@ export default function AddItem(){
 
     const handleSubmit = (e) =>{
      e.preventDefault()
+     dispatch(saveFormData(formData))
      dispatch(sendEmpty())
     }
 

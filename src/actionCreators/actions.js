@@ -18,6 +18,13 @@ export const setEmptyValues = () =>(
 )
 
 
+export const deleteAndFilterItem  = (itemId) =>(
+  {
+    type: "DELETE_ITEM", 
+    payload: itemId
+  })
+
+
 export const getItems = () => async (dispatch) =>{
   try{
     const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/items")
@@ -41,6 +48,19 @@ export const sendFormData = (name, value) => async (dispatch) =>{
   }
 }
 
+
+export const saveFormData = (formData) => async(dispatch) =>{
+  const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/items", {
+    method: "POST",
+    headers : {
+      "Content-Type": "application/json", 
+    },
+    body: JSON.stringify(formData)
+   })
+}
+
+
+
 export const sendEmpty = () => async (dispatch) =>{
   try{
    dispatch(setEmptyValues())
@@ -49,3 +69,20 @@ export const sendEmpty = () => async (dispatch) =>{
     console.error("Error", error)
   }
 }
+
+export const deleteItemAction = (itemId) => async(dispatch) =>{
+     try{
+      dispatch(deleteAndFilterItem(itemId))
+      const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/items", {
+        method: "DELETE",
+        headers : {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(itemId)
+       })
+     }
+     catch(error){
+      console.error("Error", error)
+     }
+}
+ 

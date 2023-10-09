@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getItems } from "../actionCreators/actions"
+import { deleteItemAction, getItems } from "../actionCreators/actions"
 
 export default function ItemsList(){
 const dispatch = useDispatch()
@@ -29,16 +29,14 @@ console.log("224")
 
 
 useEffect(()=>{dispatch(getItems())}, [])
-//  Print Category,
-//  map over itemsList, 
-//  check if cat matches 
-//   print foodSubCategory
-//     map over itemsList
-//     check if subcat <Matche>
-//     print productList
 
 
-///for each category, have the sub category, for each sub category, have the products
+const deleteItem = (itemId) =>{
+  console.log("Item", itemId)
+  dispatch(deleteItemAction(itemId))
+}
+
+
     return(
         <div> 
 
@@ -62,7 +60,7 @@ useEffect(()=>{dispatch(getItems())}, [])
                                 <li key={index}>
                                  {
                                     itemsList.filter((currentItem)=>(currentItem.subCatInfo.foodInfo.foodSCType===foodSCType)) .map((currentItem)=>(
-                                        <li>{currentItem.subCatInfo.foodInfo.productDetails.product.productName}</li>))
+                                        <li>{currentItem.subCatInfo.foodInfo.productDetails.product.productName} <button onClick={()=>{deleteItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Delete</button></li>))
                                    
                                  }
                                 </li>

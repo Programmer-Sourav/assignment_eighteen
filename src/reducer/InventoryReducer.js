@@ -15,10 +15,15 @@ const InventoryReducer = (state = initialState, action) =>{
     case "FORM_DATA": 
     console.log("123, Form Data", action.payload)
     return {...state, formData: {...state.formData, [action.payload.name]: action.payload.value}}
-    default: 
 
+
+    case "DELETE_ITEM": 
+    return {...state, items: state.items.filter((item)=>item.subCatInfo.foodInfo.productDetails.product._id!==action.payload)}
+    
     case "SET_EMPTY": 
     return {...state, formData: initialState.formData}
+
+    default:
     return state;
     }
 }
