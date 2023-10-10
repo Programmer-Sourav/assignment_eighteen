@@ -8,7 +8,8 @@ export default function EditItem(){
   const items = useSelector((state)=>state.items)
 
   function findTheData(){
-    return items.find((item)=>(item.subCatInfo.foodInfo.productDetails.product._id===id))
+    return items.find((item)=>(
+        item.subCatInfo.foodInfo.productDetails.product && item.subCatInfo.foodInfo.productDetails.product._id===id))
   }
 
   const formDataEntered = findTheData()

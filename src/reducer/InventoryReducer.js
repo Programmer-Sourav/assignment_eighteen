@@ -27,7 +27,8 @@ const InventoryReducer = (state = initialState, action) =>{
 
 
     case "DELETE_ITEM": 
-    return {...state, items: state.items.filter((item)=>item.subCatInfo.foodInfo.productDetails.product._id!==action.payload)}
+    return {...state, items: state.items.filter((item)=> 
+        item.subCatInfo.foodInfo.productDetails.product && item.subCatInfo.foodInfo.productDetails.product._id!==action.payload)}
     
     case "SET_EMPTY": 
     return {...state, formData: initialState.formData}

@@ -57,8 +57,9 @@ const editItem = (itemId) =>{
                                 <h4>{foodSCType}</h4>
                                 <li key={index}>
                                  {
-                                    itemsList.filter((currentItem)=>(currentItem.subCatInfo.foodInfo.foodSCType===foodSCType)) .map((currentItem)=>(
-                                        currentItem.subCatInfo.foodInfo.productDetails.product ?  (  <li>{ currentItem.subCatInfo.foodInfo.productDetails.product.productName} <button onClick={()=>{deleteItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Delete</button>  <button onClick={()=>{editItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Edit</button></li>): ""))
+                                    itemsList.filter((currentItem)=>(currentItem.subCatInfo.foodInfo.foodSCType===foodSCType  &&
+                                        currentItem.subCatInfo.foodInfo.productDetails.product)).map((currentItem)=>(
+                                        (  <li>{ currentItem.subCatInfo.foodInfo.productDetails.product.productName} <button onClick={()=>{deleteItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Delete</button>  <button onClick={()=>{editItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Edit</button></li>)))
                                    
                                  }
                                 </li>
