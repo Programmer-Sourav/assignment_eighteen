@@ -51,10 +51,33 @@
 .links{
   height: 32px;
   width: 256px;
+
 }
 
 .App-link {
   color: #61dafb;
+}
+
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.tablecell{
+  border: "1px solid #ddd";
+  padding: "8px";
+  height: "32px"
+}
+
+.border{
+  border: "1px solid black"
 }
 
 @keyframes App-logo-spin {

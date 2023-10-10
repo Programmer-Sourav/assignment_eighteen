@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from "react-redux"
-import { addToSales, fetchItemsList, updateQuantity, updateSalesValues } from "../actionCreators/actions"
+import { addToSales, fetchItemsList, getItems, updateQuantity, updateSalesValues } from "../actionCreators/actions"
 import { useEffect } from "react"
 
 export default function AddSale(){
 
 
     const dispatch = useDispatch()
+    useEffect(()=>{dispatch(getItems())}, [])
     let salesData = useSelector((data)=>data.salesData)
     const allItems = useSelector((data)=>data.items)
-
-    
-
+   
     function findTheProductDetails (){
-        return allItems.find((item)=>item.subCatInfo.foodInfo.productDetails.product.productName===salesData.productName)
+        return allItems.find((item)=>(item.subCatInfo.foodInfo.productDetails.product && item.subCatInfo.foodInfo.productDetails.product.productName===salesData.productName  && item.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand===salesData.brand))
     }
 
     useEffect(()=>{fetchItemsList()}, [])
@@ -44,14 +43,13 @@ export default function AddSale(){
 
     const onAddSales = (e) =>{
     const product = findTheProductDetails()
-    const productPrice = product.subCatInfo.foodInfo.productDetails.product.price
-    const productBrandId = product.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand._id
-    const productRecordedQty = product.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand.qtyByBrand
-    const productId = product.subCatInfo.foodInfo.productDetails.product._id
-    const updatedQty = productRecordedQty - salesData.quantity
+    const productPrice =  product.subCatInfo.foodInfo.productDetails.product!=null && product.subCatInfo.foodInfo.productDetails.product.price
+    const productBrandId = product.subCatInfo.foodInfo.productDetails && product.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand._id
+    const productRecordedQty = product.subCatInfo.foodInfo.productDetails && product.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand.qtyByBrand
+    const productId = product.subCatInfo.foodInfo.productDetails && product.subCatInfo.foodInfo.productDetails.product._id
+    const updatedQty = product.subCatInfo.foodInfo.productDetails && productRecordedQty - salesData.quantity
     const revenue = salesData.price*salesData.quantity - productPrice*salesData.quantity;
     salesData = {...salesData, revenue: revenue}
-    console.log("PID ", productBrandId)
     dispatch(addToSales(salesData))
     dispatch(updateQuantity(productBrandId, updatedQty))
     }
