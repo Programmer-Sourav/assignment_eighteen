@@ -39,6 +39,20 @@
   margin: 16px;
 }
 
+.prompt{
+  height: 92px;
+  width: 252px;
+  background-color: rebeccapurple;
+  color: white;
+  margin: 16px;
+  text-align: center;
+}
+
+.links{
+  height: 32px;
+  width: 256px;
+}
+
 .App-link {
   color: #61dafb;
 }

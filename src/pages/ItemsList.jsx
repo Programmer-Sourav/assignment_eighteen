@@ -22,14 +22,14 @@ console.log("SubCat", foodSubCategory)
 const mapOverItemsList = itemsList.map((eachItem)=>(eachItem))
 console.log("123", mapOverItemsList)
 
-const mapOverItems =  itemsList.map((fc)=>(fc.subCatInfo.foodInfo.productDetails.product.productName))
-console.log("222", mapOverItems)
+// const mapOverItems =  itemsList.map((fc)=>(fc.subCatInfo.foodInfo.productDetails.product.productName))
+// console.log("222", mapOverItems)
 
 
 
 
-const name = mapOverItems.map((item)=>(item))
-console.log("224")
+// const name = mapOverItems.map((item)=>(item))
+// console.log("224")
 
 
 useEffect(()=>{dispatch(getItems())}, [])
@@ -67,7 +67,7 @@ const editItem = (itemId) =>{
                                 <li key={index}>
                                  {
                                     itemsList.filter((currentItem)=>(currentItem.subCatInfo.foodInfo.foodSCType===foodSCType)) .map((currentItem)=>(
-                                        <li>{currentItem.subCatInfo.foodInfo.productDetails.product.productName} <button onClick={()=>{deleteItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Delete</button>  <button onClick={()=>{editItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Edit</button></li>))
+                                        <li>{currentItem.subCatInfo.foodInfo.productDetails.product && currentItem.subCatInfo.foodInfo.productDetails.product.productName} <button onClick={()=>{deleteItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Delete</button>  <button onClick={()=>{editItem(currentItem.subCatInfo.foodInfo.productDetails.product._id)}}>Edit</button></li>))
                                    
                                  }
                                 </li>

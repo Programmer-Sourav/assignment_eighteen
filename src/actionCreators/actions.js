@@ -81,12 +81,11 @@ export const sendEmpty = () => async (dispatch) =>{
 export const deleteItemAction = (itemId) => async(dispatch) =>{
      try{
       dispatch(deleteAndFilterItem(itemId))
-      const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/items", {
+      const response = await fetch(`https://inventory-management-back-end.developersourav.repl.co/api/items/delete/${itemId}`, {
         method: "DELETE",
         headers : {
           "Content-Type": "application/json", 
         },
-        body: JSON.stringify(itemId)
        })
      }
      catch(error){
