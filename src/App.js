@@ -16,6 +16,7 @@ function App() {
       <Link to="/addsale"> Add Sale</Link>
       <Link to="/sales"> Sales</Link>
       <Routes>
+        <Route path='/items' element={<ItemsList/>}/>
         <Route path='/edititem/:id' element={<EditItem/>}/>
         <Route path="/additem" element={<AddItem/>}/>
         <Route path='/items' element={<ItemsList/>}/>
