@@ -12,6 +12,7 @@ export default function SalesCard({sale}){
                <p>Price: Rs.{sale.itemPrice}</p>
                <p>Item Sold: {sale.itemQuantity}</p>
                <p>Revenue: Rs.{sale.revenue}</p>
+               <p> Sales Date: {sale.date} </p>
                </ul>
             }
         </div>
