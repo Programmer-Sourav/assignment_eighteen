@@ -10,8 +10,18 @@ export default function AddSale(){
     let salesData = useSelector((data)=>data.salesData)
     const allItems = useSelector((data)=>data.items)
    
-    function findTheProductDetails (){
-        return allItems.find((item)=>(item.subCatInfo.foodInfo.productDetails.product && item.subCatInfo.foodInfo.productDetails.product.productName===salesData.productName  && item.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand===salesData.brand))
+    function findTheProductDetails() {
+      const item = allItems.find((item) => {
+        if (item.subCatInfo.foodInfo.productDetails.product !== null) {
+          //console.log(7777,  item.subCatInfo.foodInfo.productDetails.product.productName, item.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand)
+          return (
+            item.subCatInfo.foodInfo.productDetails.product.productName.toLowerCase() === salesData.productName.toLowerCase() &&
+            item.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand.brandName.toLowerCase() === salesData.brand.toLowerCase()
+          );
+        }
+        return false; 
+      });
+      return item;
     }
 
     useEffect(()=>{fetchItemsList()}, [])
@@ -43,7 +53,8 @@ export default function AddSale(){
 
     const onAddSales = (e) =>{
     const product = findTheProductDetails()
-    const productPrice =  product.subCatInfo.foodInfo.productDetails.product!=null && product.subCatInfo.foodInfo.productDetails.product.price
+    
+    const productPrice =  product.subCatInfo.foodInfo.productDetails.product && product.subCatInfo.foodInfo.productDetails.product.price
     const productBrandId = product.subCatInfo.foodInfo.productDetails && product.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand._id
     const productRecordedQty = product.subCatInfo.foodInfo.productDetails && product.subCatInfo.foodInfo.productDetails.product.brandQtyInfo.brand.qtyByBrand
     const productId = product.subCatInfo.foodInfo.productDetails && product.subCatInfo.foodInfo.productDetails.product._id

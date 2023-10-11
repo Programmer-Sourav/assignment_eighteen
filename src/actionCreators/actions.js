@@ -67,6 +67,15 @@ export const saveFormData = (formData) => async(dispatch) =>{
    })
 }
 
+export const editFormData = (formData, itemId) => async(dispatch) =>{
+  const response = await fetch(`https://inventory-management-back-end.developersourav.repl.co/api/items/${itemId}`, {
+    method: "POST",
+    headers : {
+      "Content-Type": "application/json", 
+    },
+    body: JSON.stringify(formData)
+   })
+}
 
 
 export const sendEmpty = () => async (dispatch) =>{

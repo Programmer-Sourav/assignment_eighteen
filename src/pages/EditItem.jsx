@@ -12,6 +12,7 @@ export default function EditItem(){
         item.subCatInfo.foodInfo.productDetails.product && item.subCatInfo.foodInfo.productDetails.product._id===id))
   }
 
+  
   const formDataEntered = findTheData()
  
 
@@ -29,7 +30,7 @@ export default function EditItem(){
    
   const handleSubmit = (e) =>{
    e.preventDefault()
-   dispatch(saveFormData(formData))
+   dispatch(saveFormData(formData, id))
    dispatch(sendEmpty())
   }
 
