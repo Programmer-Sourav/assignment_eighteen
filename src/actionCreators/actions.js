@@ -35,16 +35,34 @@ export const deleteAndFilterItem  = (itemId) =>(
 
 export const getItems = () => async (dispatch) =>{
   try{
+    dispatch(fetchItemsLoading());
     const response = await fetch("https://inventory-management-back-end.developersourav.repl.co/api/items")
-    const receivedResponse = await response.json()
-    const itemsList = receivedResponse.items
-    console.log("Response", receivedResponse, itemsList)
-    dispatch(fetchItemsList(itemsList))
-  }
-  catch(error){
-    console.error("Error", error)
+    if (!response.ok) {
+      throw new Error(`Error fetching items: ${response.status} ${response.statusText}`);
+    }
+    const receivedResponse = await response.json();
+    const itemsList = receivedResponse.items;
+
+    // Dispatch the success action with the items
+    dispatch(fetchItemsList(itemsList));
+  } catch (error) {
+    // Dispatch the error action with the error message
+    dispatch(fetchItemsError(error.message));
+    console.error("Error", error);
   }
 }
+export const fetchItemsLoading = () => {
+  return {
+    type: "FETCH_ITEMS_LOADING",
+  };
+};
+
+export const fetchItemsError = (error) => {
+  return {
+    type: "FETCH_ITEMS_ERROR",
+    payload: error,
+  };
+};
 
 
 export const sendFormData = (name, value) => async (dispatch) =>{

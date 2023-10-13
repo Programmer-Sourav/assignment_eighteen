@@ -7,6 +7,7 @@ export default function ItemsList(){
 const dispatch = useDispatch()
 const itemsList =  useSelector((state)=>state.items)
 console.log("Items ", itemsList)
+const loading = useSelector((state) => state.loading);
 
 
 const navigate = useNavigate()
@@ -38,7 +39,9 @@ const editItem = (itemId) =>{
     return(
         <div> 
 
-            {
+            {loading ? (
+        <p className="divp">Please wait while we load items...</p>
+      ) : (
                         
 
                 foodCategory.map((fc)=>(
@@ -70,7 +73,7 @@ const editItem = (itemId) =>{
                         }
                         
                          </div>
-                   ))
+                   )))
 
                   
             }
